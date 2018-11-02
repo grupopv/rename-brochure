@@ -18,7 +18,7 @@ do
     prefix=
   fi
 
-  echo "Renaming $1-$prefix$file"000".pdf to pdfs/$new_name$2$1.pdf"
+  echo "Renaming $1$prefix$file"000".pdf to pdfs/$new_name$2$1.pdf"
   mkdir -p pdfs/$new_name$2
-  mv $1-$prefix$file"000".pdf pdfs/$new_name$2$1.pdf
+  mv $1$prefix$file"000".pdf pdfs/$new_name$2$1.pdf
 done < domains.csv
