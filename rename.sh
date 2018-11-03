@@ -1,24 +1,29 @@
 #!/bin/bash
 
 # Variables
-file=0
+filename=$1
+path=$2
+counter=0
+suffix="000"
+extension="pdf"
 
 while IFS=, read domain
 do
-  ((file=$file+1))
-  new_name=$(echo $domain | tr -d '\r')
+  ((counter=$counter+1))
 
-  if [ $file -lt 10 ]
-  then
+  if [ $counter -lt 10 ]; then
     prefix=00
-  elif [ $file -lt 100 ]
-  then
+  elif [ $counter -lt 100 ]; then
     prefix=0
   else
     prefix=
   fi
 
-  echo "Renaming $1$prefix$file"000".pdf to pdfs/$new_name$2$1.pdf"
-  mkdir -p pdfs/$new_name$2
-  mv $1$prefix$file"000".pdf pdfs/$new_name$2$1.pdf
+  domain=$(echo $domain | tr -d '\r')
+  original_name=$filename$prefix$counter$suffix.$extension
+  new_name=pdfs/$domain/$path/$filename.$extension
+
+  echo "Renaming $original_name to $new_name"
+  mkdir -p pdfs/$domain/$path
+  mv $original_name $new_name
 done < domains.csv
