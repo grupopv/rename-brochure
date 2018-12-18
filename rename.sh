@@ -25,5 +25,5 @@ do
 
   echo "Renaming $original_name to $new_name"
   mkdir -p pdfs/$domain/$path
-  mv $original_name $new_name
+  mv "$original_name" "$new_name"
 done < domains.csv
